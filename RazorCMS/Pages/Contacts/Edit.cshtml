@@ -1,0 +1,84 @@
+﻿@page
+@model RazorCMS.ContactEditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <nav class="navbar navbar-expand">
+                <ul class="navbar-nav">
+                    <li class="navbar-brand">
+                        <strong>Edit Contact</strong>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-link btn-outline-light" href="javascript:$('#contact').submit();">
+                            <i class="far fa-save"></i>&nbsp;&nbsp;Save
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link btn-link btn-outline-light" href="javascript:history.go(-1);">
+                            <i class="far fa-arrow-alt-circle-left"></i>&nbsp;&nbsp;Back
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="card-body overflow-auto">
+            <div class="row">
+                <form method="post" class="container" id="contact">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Contact.ContactId" />
+                    <div class="row col-md-12">
+                        <div class="form-group col-8">
+                            <label asp-for="Contact.Name" class="control-label"></label>
+                            <input asp-for="Contact.Name" class="form-control" />
+                            <span asp-validation-for="Contact.Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row col-md-12">
+                        <div class="form-group col-4">
+                            <label asp-for="Contact.WorkPhone" class="control-label"></label>
+                            <input asp-for="Contact.WorkPhone" class="form-control" />
+                            <span asp-validation-for="Contact.WorkPhone" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-4">
+                            <label asp-for="Contact.MobilePhone" class="control-label"></label>
+                            <input asp-for="Contact.MobilePhone" class="form-control" />
+                            <span asp-validation-for="Contact.MobilePhone" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-4">
+                            <label asp-for="Contact.HomePhone" class="control-label"></label>
+                            <input asp-for="Contact.HomePhone" class="form-control" />
+                            <span asp-validation-for="Contact.HomePhone" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row col-md-12">
+                        <div class="form-group col-4">
+                            <label asp-for="Contact.Email" class="control-label"></label>
+                            <input asp-for="Contact.Email" class="form-control" />
+                            <span asp-validation-for="Contact.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-4">
+                            <label asp-for="Contact.WorkTitle" class="control-label"></label>
+                            <input asp-for="Contact.WorkTitle" class="form-control" />
+                            <span asp-validation-for="Contact.WorkTitle" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-4">
+                            <label asp-for="Contact.CompanyId" class="control-label"></label>
+                            <select asp-for="Contact.CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
+                            <span asp-validation-for="Contact.CompanyId" class="text-danger"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

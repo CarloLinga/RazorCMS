@@ -1,0 +1,50 @@
+﻿@page
+@model RazorCMS.ContactDetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card">
+    <div class="card-header">
+        <nav class="navbar navbar-expand">
+            <ul class="navbar-nav">
+                <li class="navbar-brand">
+                    <strong>Contact Details</strong>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn-link btn-outline-light" asp-page="./Edit" asp-route-id="@Model.Contact.ContactId">
+                        <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn-link btn-outline-light" href="javascript:history.go(-1)">
+                        <i class="far fa-arrow-alt-circle-left"></i>&nbsp;&nbsp;Back
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>@Html.DisplayFor(model => model.Contact.Name)</h5>
+                    </div>
+                    <div class="card-body">
+                        @Html.Raw(@Model.ContactCardHtml)
+                    </div>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header"><h5>Activities</h5></div>
+                    <div class="card-body">
+                        <p>List of Activities</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,54 @@
+﻿@page
+@model RazorCMS.ContactIndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="card">
+    <div class="card-header" id="toolbar">
+        <div class="container-fluid col-12">
+            <ul class="nav nav-tabs card-header-tabs list-group-flush">
+                <li class="nav-item">
+                    <strong>Contacts&nbsp;&nbsp;&nbsp;</strong>
+                    <a class="btn btn-light" asp-page="Create">
+                        <i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Create New
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-body">
+        <table id="table"
+               data-toggle="table"
+               data-url="api/Contacts"
+               data-sortable="true"
+               data-height="520"
+               data-toolbar="#toolbar"
+               data-search="true"
+               data-show-search-button="true"
+               data-show-search-clear-button="true"
+               data-pagination="true"
+               data-show-columns="true"
+               class="table table-sm table-hover table-bordered table-striped thead-light">
+            <thead class="thead-light">
+                <tr>
+                    <th data-field="name" data-sortable="true">Name</th>
+                    <th data-field="email" data-sortable="true">Email</th>
+                    <th data-field="workTitle" data-sortable="true">Work Title</th>
+                    <th data-field="company.companyName" data-sortable="true">Company</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $('#table').on('click-row.bs.table',
+            function (e, row, $element, field) {
+                window.location.href = 'Contacts/Details?id=' + row.contactId
+            }
+        );
+    </script>
+}

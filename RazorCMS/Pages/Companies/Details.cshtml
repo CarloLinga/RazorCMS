@@ -1,0 +1,91 @@
+﻿@page
+@model RazorCMS.CompanyDetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <nav class="navbar navbar-expand">
+                <ul class="navbar-nav">
+                    <li class="navbar-brand">
+                        <h5>Company Details</h5>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-outline-light btn-link" asp-page="./Edit" asp-route-id="@Model.Company.CompanyId">
+                            <i class="far fa-edit"></i>&nbsp;&nbsp;Edit
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-link btn-outline-light" asp-page="./Index">
+                            <i class="far fa-arrow-alt-circle-left"></i>&nbsp;&nbsp;Back to List
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-header"><h5>@Model.Company.CompanyName</h5></div>
+                        <div class="card-body">
+                            @Html.Raw(@Model.CompanyCardHtml)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <nav class="navbar navbar-expand">
+                                <ul class="navbar-nav">
+                                    <li class="navbar-brand">
+                                        <h5>Contacts</h5>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link btn-link btn-outline-light" asp-page="/Contacts/Create">
+                                            <i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Add
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="card-body">
+                            <table id="contact-list"
+                                   class="table table-sm table-hover">
+                                <tr>
+                                    <th style="display: none;">Record Id</th>
+                                    <th>Name</th>
+                                    <th>Title</th>
+                                    <th>Phone No.</th>
+                                </tr>
+                                @foreach (var item in Model.Company.Contacts)
+                                {
+                                    <tr>
+                                        <td style="display:none;">@Html.DisplayFor(modelItem => item.ContactId)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.WorkTitle)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.WorkPhone)</td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#contact-list tr').click(function () {
+                var id = $(this).find('td:first').text();
+                window.location.href = '/Contacts/Details?id=' + id
+            })
+        });
+    </script>
+}
