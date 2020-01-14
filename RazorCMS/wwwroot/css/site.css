@@ -27,3 +27,7 @@ a {
 .table-hover tbody tr:hover > td {
     cursor: pointer;
 }
+
+#formToolbar {
+    height: 20px;
+}

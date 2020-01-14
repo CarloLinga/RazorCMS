@@ -8,18 +8,18 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <nav class="navbar navbar-expand">
+            <nav class="navbar navbar-expand" style="height: 2rem;">
                 <ul class="navbar-nav">
                     <li class="navbar-brand">
-                        <strong>Create New Contact</strong>
+                        <h5>Create New Contact</h5>
                     </li>
                     <li class="nav-item">
-                        <button type="submit" form="contact" class="nav-link btn-link btn-outline-light">
+                        <a class="nav-link btn-link btn-outline-light" href="javascript:$('#contact').submit();">
                             <i class="far fa-save"></i>&nbsp;&nbsp;Save
-                        </button>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn-link btn-outline-light" asp-page="./Index">
+                        <a class="nav-link btn-link btn-outline-light" href="javascript:history.go(-1);">
                             <i class="far fa-arrow-alt-circle-left"></i>&nbsp;&nbsp;Back
                         </a>
                     </li>
@@ -67,7 +67,9 @@
                         </div>
                         <div class="form-group col-4">
                             <label asp-for="Contact.CompanyId" class="control-label"></label>
-                            <select asp-for="Contact.CompanyId" class="form-control" asp-items="ViewBag.CompanyId"></select>
+                            <select asp-for="Contact.CompanyId" class="form-control" asp-items="ViewBag.CompanyId">
+                                <option value="">(Select Company)</option>
+                            </select>
                             <span asp-validation-for="Contact.CompanyId" class="text-danger"></span>
                         </div>
                     </div>

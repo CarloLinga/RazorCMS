@@ -20,10 +20,13 @@ namespace RazorCMS
             _context = context;
         }
 
-        public IActionResult OnGet()
+        [BindProperty]
+        public Contact Contact { get; set; }
+
+        public IActionResult OnGet(int? companyId)
         {
             ViewData["CompanyId"] = new SelectList(_context.Companies
-                .OrderBy(b => b.CompanyName), "CompanyId", "CompanyName");
+                .OrderBy(b => b.CompanyName), "CompanyId", "CompanyName", companyId);
 
             // Save the Previous Page Url
             string prevPage = Request.Headers["Referer"].ToString();
@@ -31,9 +34,6 @@ namespace RazorCMS
 
             return Page();
         }
-
-        [BindProperty]
-        public Contact Contact { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.

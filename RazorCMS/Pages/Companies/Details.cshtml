@@ -8,7 +8,7 @@
 <div class="container">
     <div class="card">
         <div class="card-header">
-            <nav class="navbar navbar-expand">
+            <nav class="navbar navbar-expand" style="height: 2rem;">
                 <ul class="navbar-nav">
                     <li class="navbar-brand">
                         <h5>Company Details</h5>
@@ -39,13 +39,13 @@
                 <div class="col-8">
                     <div class="card">
                         <div class="card-header">
-                            <nav class="navbar navbar-expand">
+                            <nav class="navbar navbar-expand" style="height: 2rem;">
                                 <ul class="navbar-nav">
                                     <li class="navbar-brand">
                                         <h5>Contacts</h5>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link btn-link btn-outline-light" asp-page="/Contacts/Create">
+                                        <a class="nav-link btn-link btn-outline-light" asp-page="/Contacts/Create" asp-route-companyId="@Model.Company.CompanyId">
                                             <i class="fas fa-plus-circle"></i>&nbsp;&nbsp;Add
                                         </a>
                                     </li>
@@ -84,7 +84,9 @@
         $(document).ready(function () {
             $('#contact-list tr').click(function () {
                 var id = $(this).find('td:first').text();
-                window.location.href = '/Contacts/Details?id=' + id
+                if (id != '') {
+                    window.location.href = '/Contacts/Details?id=' + id
+                }
             })
         });
     </script>
